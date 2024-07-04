@@ -1,80 +1,39 @@
-import axios from "axios"
-import { useState } from "react"
+import axios from "axios";
+import { useState } from "react";
 
-const api = axios.create()
-const baseUrl = 'http://localhost:3001/products'
+const api = axios.create({
+  baseURL: "http://localhost:3001/products",
+});
 
-api.interceptors.request.use( config => {
-    // Promise: objet javascript. Une promesse représente une valeur qui peut être disponible maintenant, 
-    // dans le future ou jamais. La fonction de rappelle fournie 'resolve' et sera appelée losque la promesse est résolue
-    return new Promise( (resolve) => setTimeout( () => resolve(config), 3000)) // Délai de 3s
-})
+api.interceptors.request.use((config) => {
+  // Promise: objet javascript. Une promesse représente une valeur qui peut être disponible maintenant,
+  // dans le future ou jamais. La fonction de rappelle fournie 'resolve' et sera appelée losque la promesse est résolue
+  return new Promise((resolve) => setTimeout(() => resolve(config), 3000)); // Délai de 3s
+});
 
 export const useAxios = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const get = () => {
-    setLoading(true)
-    return api.get(baseUrl)
-        .then((response) => {
-            setLoading(false)
-            return response.data
-        })
-        .catch( err => {
-            setLoading(false)
-            setError(err)
-            throw err;
-        })
-  }
+  const handleRequest = async (requestFunction, ...args) => {
+    setLoading(true);
+    try {
+      const response = await requestFunction(...args);
+      setLoading(false);
+      return response.data;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+      throw err;
+    }
+  };
 
-  const post = (data) => {
-    setLoading(true)
-    return api.post(baseUrl, data)
-        .then( (response) => {
-            setLoading(false)
-            return response.data
-        })
-        .catch( (err) => {
-            setLoading(false);
-            setError(err);
-            throw err;
-        })
-  }
-
-  const put = (id, data) => {
-    setLoading(true)
-
-    const url = `${baseUrl}/${id}`
-
-    return api.put(url, data)
-        .then( (response) => {
-            setLoading(false)
-            return response.data
-        })
-        .catch( (err) => {
-            setLoading(false)
-            setError(err)
-            throw err;
-        })
-  }
-
-  const remove = (id) => {
-    setLoading(true)
-
-    const url = `${baseUrl}/${id}`
-
-    return api.delete(url)
-        .then( (response) => {
-            setLoading(false)
-            return response.data
-        })
-        .catch( (err) => {
-            setLoading(false)
-            setError(err)
-            throw err;
-        })
-  }
+  const get = (endpoint) => handleRequest(api.get, endpoint);
+  const post = (endpoint, data) => handleRequest(api.post, endpoint, data);
+  const put = (endpoint, id, data) =>
+    handleRequest(api.put, `${endpoint}/${id}`, data);
+  const remove = (endpoint, id) =>
+    handleRequest(api.delete, `${endpoint}/${id}`);
 
   return {
     loading,
@@ -82,7 +41,6 @@ export const useAxios = () => {
     get,
     post,
     put,
-    remove
-  }
-
-}
+    remove,
+  };
+};
