@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import logo from "/src/assets/img/logo.png";
+import { HeaderItem } from "./HeaderItem";
 
 export const NavBar = () => {
-  // adresse du logo
-  const logo = "../assets/img/logo.png";
+  // Equivalent du 'import logo' au dessus
+  // const logo = "/src/assets/img/logo.png";
 
   return (
     <>
@@ -12,7 +14,11 @@ export const NavBar = () => {
             <img src={logo} className="w-auto h-10"></img>
           </Link>
           <div className="m-auto w-fit">
-            <ul className="flex items-center gap-10"></ul>
+            <ul className="flex items-center gap-10">
+              <li>
+                <HeaderItem href="/products">products</HeaderItem>
+              </li>
+            </ul>
           </div>
         </nav>
       </header>
