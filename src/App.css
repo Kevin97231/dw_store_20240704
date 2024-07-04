@@ -1,0 +1,21 @@
+.outlet {
+  margin-left: 20px;
+  margin-right: 20px;
+  align-items: flex-start;
+  display: flex;
+  flex: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.navbar {
+  display: fixed;
+}
+
+.root-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hauteur minimale de la vue */
+}
+
+.Footer {
+    margin-top: auto; /* Place le footer tout en bas */
+}
