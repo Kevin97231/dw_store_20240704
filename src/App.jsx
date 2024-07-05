@@ -3,6 +3,9 @@ import "./App.css";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
 import { Product } from "./components/view/Product";
+import { CounterRedux } from "./components/view/CounterRedux";
+import { ProductDetail } from "./components/view/ProductDetail";
+import { Panier } from "./components/view/Panier";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +20,18 @@ function App() {
         {
           path: "/products",
           element: <Product />,
+        },
+        {
+          path: "/compteur-redux",
+          element: <CounterRedux />,
+        },
+        {
+          path: "/products/:id",
+          element: <ProductDetail />,
+        },
+        {
+          path: "/panier",
+          element: <Panier />,
         },
         {
           path: "*",

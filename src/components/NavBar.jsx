@@ -18,6 +18,14 @@ export const NavBar = () => {
               <li>
                 <HeaderItem href="/products">nos produits</HeaderItem>
               </li>
+              <li>
+                <HeaderItem href="/compteur-redux">
+                  Compteur avec redux
+                </HeaderItem>
+              </li>
+              <li>
+                <HeaderItem href="/panier">Mon panier</HeaderItem>
+              </li>
             </ul>
           </div>
         </nav>
