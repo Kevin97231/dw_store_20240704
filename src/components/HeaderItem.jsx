@@ -8,7 +8,14 @@ export const HeaderItem = ({ href, children }) => {
 
   return (
     <>
-      <Link to={href}>{children}</Link>
+      <Link
+        to={href}
+        className={`${
+          pathname === href && "border-b-4 border-base"
+        } pb-1 text-lg hover:text-secondary font-semibold`}
+      >
+        {children}
+      </Link>
     </>
   );
 };

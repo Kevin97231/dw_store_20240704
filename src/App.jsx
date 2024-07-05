@@ -2,6 +2,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
+import { Product } from "./components/view/Product";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,7 +16,7 @@ function App() {
         },
         {
           path: "/products",
-          element: <>products</>,
+          element: <Product />,
         },
         {
           path: "*",

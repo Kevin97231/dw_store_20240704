@@ -16,7 +16,7 @@ export const NavBar = () => {
           <div className="m-auto w-fit">
             <ul className="flex items-center gap-10">
               <li>
-                <HeaderItem href="/products">products</HeaderItem>
+                <HeaderItem href="/products">nos produits</HeaderItem>
               </li>
             </ul>
           </div>
